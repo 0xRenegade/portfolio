@@ -1,4 +1,3 @@
-// import { Container } from 'react-bootstrap'
 import { NavBar } from './'
 
 const Layout = () => {
