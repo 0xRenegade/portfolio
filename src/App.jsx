@@ -1,8 +1,13 @@
 import { Router } from './router'
+import { Layout } from './components'
 import './App.css'
 
 const App = () => {
-  return <Router />
+  return (
+    <Layout>
+      <Router />
+    </Layout>
+  )
 }
 
 export default App
