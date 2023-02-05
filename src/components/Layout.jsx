@@ -1,7 +1,12 @@
 import { NavBar } from './'
 
-const Layout = () => {
-  return <NavBar />
+const Layout = ({ children }) => {
+  return (
+    <>
+      <NavBar />
+      {children}
+    </>
+  )
 }
 
 export default Layout
