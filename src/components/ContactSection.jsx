@@ -1,9 +1,21 @@
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { Row, Col } from 'react-bootstrap'
 import { useValidationResolver } from '../hooks'
 
 const ContactSection = () => {
+  const [vertical, setVertical] = useState(false)
+
+  const handleResize = (e) => {
+    const { innerWidth } = e.target
+    if (innerWidth >= 992) {
+      setVertical(true)
+    } else {
+      setVertical(false)
+    }
+  }
+
   const phoneRegex =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -14,7 +26,6 @@ const ContactSection = () => {
       .string()
       .matches(phoneRegex, 'Phone Number is invalid.')
       .required('Your phone number is required.'),
-    website: yup.string().nullable(),
     reason: yup.string().required('This information is helpful.'),
   })
   const resolver = useValidationResolver(SCHEMA)
@@ -27,20 +38,37 @@ const ContactSection = () => {
     })
   }
 
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+  })
+
   return (
     <Row>
       <Col
         className="lets-chat d-flex align-items-center justify-content-center"
         xs={12}
         sm={12}
-        md={6}
-        lg={6}
-        xl={6}
-        xxl={6}
+        md={12}
+        lg={5}
+        xl={5}
+        xxl={5}
       >
         <h1>Let's Chat!</h1>
       </Col>
-      <Col xs={12} sm={12} md={6} lg={6} xl={6} xxl={6}>
+      <Col
+        className="d-flex justify-content-center align-items-center"
+        style={{ margin: '20px 0' }}
+        xs={12}
+        sm={12}
+        md={12}
+        lg={2}
+        xl={2}
+        xxl={2}
+      >
+        {vertical && <div className="vr"></div>}
+        {!vertical && <div className="hr"></div>}
+      </Col>
+      <Col xs={12} sm={12} md={12} lg={5} xl={5} xxl={5}>
         <form onSubmit={hijackSubmit}>
           <div className="mb-3">
             <label className="form-label">
