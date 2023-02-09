@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom'
 const ProjectSection = () => {
   return (
     <Row className="mt-5 mb-5">
+      <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+        <p className="projects-note text-center">
+          <i>Note: Projects are obfuscated for privacy.</i>
+        </p>
+      </Col>
       {projects &&
         projects.map((project) => {
           return (
