@@ -1,10 +1,11 @@
-import { HeroSection, ProjectSection } from '../components'
+import { ContactSection, HeroSection, ProjectSection } from '../components'
 
 const HomePage = () => {
   return (
     <>
       <HeroSection />
       <ProjectSection />
+      <ContactSection />
     </>
   )
 }

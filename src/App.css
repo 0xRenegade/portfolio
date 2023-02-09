@@ -16,3 +16,15 @@
 .projects-note {
   font-size: 16px;
 }
+
+form {
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem
+}
+
+@media screen and (max-width: 768px) {
+  .lets-chat {
+    margin-bottom: 3em;
+  }
+}
