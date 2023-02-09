@@ -18,12 +18,16 @@ const ProjectSection = () => {
               sm={12}
               md={12}
               lg={6}
-              xl={3}
-              xxl={3}
+              xl={6}
+              xxl={6}
               className="d-flex justify-content-center align-items-center pl-1 pr-1"
             >
-              <Link class="project-card" to={project.slug}>
-                <Card style={{ width: '18rem' }}>
+              <Link className="project-card" to={project.slug}>
+                <Card
+                  style={{
+                    width: '18rem',
+                  }}
+                >
                   <Card.Img variant="top" src={project.image} />
                   <Card.Body>
                     <Card.Title>{project.title}</Card.Title>
