@@ -1,11 +1,71 @@
 import { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
+import { useForm } from '@formspree/react'
 import { Row, Col } from 'react-bootstrap'
-import { useValidationResolver } from '../hooks'
+import { toast } from 'react-toastify'
 
 const ContactSection = () => {
   const [vertical, setVertical] = useState(false)
+  const [state, handleSubmit] = useForm('mlekjbzw')
+
+  const phoneRegex = new RegExp(
+    '/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/'
+  )
+
+  const handlePhoneChange = (e) => {
+    const { value } = e.target
+
+    if (!value) return value
+
+    const phoneNumber = value.replace(/[^\d]/g, '')
+
+    const phoneNumberLength = phoneNumber.length
+
+    if (phoneNumberLength < 4) return phoneNumber
+
+    if (phoneNumberLength < 7) {
+      e.target.value = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`
+    }
+
+    e.target.value = `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6
+    )}-${phoneNumber.slice(6, 10)}`
+  }
+
+  const hijackSubmit = (e) => {
+    e.preventDefault()
+
+    let form = new FormData(e.target)
+    form = [...form.entries()]
+    form = {
+      name: form[0].filter((item) => item !== 'name').toString(),
+      email: form[1].filter((item) => item !== 'email').toString(),
+      phone: form[2].filter((item) => item !== 'phone').toString(),
+      message: form[3].filter((item) => item !== 'message').toString(),
+    }
+
+    if (form.name.length === 0) {
+      toast.error('Your name cannot be empty.', {
+        autoClose: 3000,
+      })
+      return
+    }
+
+    if (form.email.length === 0) {
+      toast.error('Your email cannot be empty.', {
+        autoClose: 3000,
+      })
+      return
+    }
+
+    handleSubmit(e)
+
+    if (state.succeeded) {
+      toast.success('Your message was submitted successfully.', {
+        autoClose: 3000,
+      })
+    }
+  }
 
   const handleResize = (e) => {
     const { innerWidth } = e.target
@@ -16,34 +76,12 @@ const ContactSection = () => {
     }
   }
 
-  const phoneRegex =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-
-  const SCHEMA = yup.object().shape({
-    name: yup.string().required('Your name is required.'),
-    email: yup.string().email().required('Your email is required.'),
-    phone: yup
-      .string()
-      .matches(phoneRegex, 'Phone Number is invalid.')
-      .required('Your phone number is required.'),
-    reason: yup.string().required('This information is helpful.'),
-  })
-  const resolver = useValidationResolver(SCHEMA)
-
-  const { handleSubmit, register } = useForm({ resolver })
-
-  const hijackSubmit = () => {
-    handleSubmit((data) => {
-      console.log(data)
-    })
-  }
-
   useEffect(() => {
     window.addEventListener('resize', handleResize)
   })
 
   return (
-    <Row>
+    <Row className="mt-5 mb-5">
       <Col
         className="lets-chat d-flex align-items-center justify-content-center"
         xs={12}
@@ -71,32 +109,38 @@ const ContactSection = () => {
       <Col xs={12} sm={12} md={12} lg={5} xl={5} xxl={5}>
         <form onSubmit={hijackSubmit}>
           <div className="mb-3">
-            <label className="form-label">
+            <label htmlFor="name" className="form-label">
               Your Name <span style={{ color: 'red' }}>*</span>
             </label>
-            <input {...register('name')} className="form-control" />
+            <input type="text" name="name" className="form-control" />
           </div>
           <div className="mb-3">
-            <label className="form-label">
+            <label htmlFor="email" className="form-label">
               Your Email <span style={{ color: 'red' }}>*</span>
             </label>
-            <input {...register('email')} className="form-control" />
+            <input type="email" name="email" className="form-control" />
           </div>
           <div className="mb-3">
-            <label className="form-label">
-              Your Phone <span style={{ color: 'red' }}>*</span>
+            <label htmlFor="phone" className="form-label">
+              Your Phone
             </label>
-            <input {...register('phone')} className="form-control" />
+            <input
+              type="tel"
+              name="phone"
+              className="form-control"
+              onChange={handlePhoneChange}
+            />
           </div>
           <div className="mb-3">
-            <label className="form-label">Other Information</label>
-            <textarea
-              {...register('reason')}
-              className="form-control"
-            ></textarea>
+            <label className="form-label">Your Message</label>
+            <textarea name="message" className="form-control"></textarea>
           </div>
           <div className="text-center">
-            <input className="btn btn-primary" type="submit" />
+            <input
+              className="btn btn-primary"
+              type="submit"
+              disabled={state.submitting}
+            />
           </div>
         </form>
       </Col>
