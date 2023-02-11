@@ -11,7 +11,7 @@ const ProjectSection = () => {
         </p>
       </Col>
       {projects &&
-        projects.map((project) => {
+        projects.map((project, i) => {
           return (
             <Col
               xs={12}
@@ -21,6 +21,7 @@ const ProjectSection = () => {
               xl={6}
               xxl={6}
               className="d-flex justify-content-center align-items-center pl-1 pr-1"
+              key={i}
             >
               <Link className="project-card" to={project.slug}>
                 <Card
