@@ -28,6 +28,7 @@ const NavBar = () => {
             className="justify-content-center"
           >
             <Nav>
+              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link onClick={() => handleScroll('about')} href="#">
                 About Me
               </Nav.Link>
