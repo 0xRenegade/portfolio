@@ -23,7 +23,7 @@ const ProjectSection = () => {
               className="d-flex justify-content-center align-items-center pl-1 pr-1"
               key={i}
             >
-              <Link className="project-card" to={project.slug}>
+              <Link className="project-card" to={'/projects/' + project.slug}>
                 <Card
                   style={{
                     width: '18rem',
