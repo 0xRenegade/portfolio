@@ -7,10 +7,6 @@ const ContactSection = () => {
   const [vertical, setVertical] = useState(false)
   const [state, handleSubmit] = useForm('mlekjbzw')
 
-  const phoneRegex = new RegExp(
-    '/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/'
-  )
-
   const handlePhoneChange = (e) => {
     const { value } = e.target
 
