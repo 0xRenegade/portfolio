@@ -5,7 +5,7 @@ const HeroSection = () => {
   const bio =
     'I am a full stack web developer with extensive experience with WordPress, Core PHP and Laravel web applications with two years in the industry. My strong suites are being independent, detail oriented and an excellent communicator that knows the right questions to ask.'
   return (
-    <Row className="mt-5 mb-5">
+    <Row id="about" className="mt-5 mb-5">
       <Col
         xs={12}
         sm={12}

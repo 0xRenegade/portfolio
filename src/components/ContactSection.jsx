@@ -77,7 +77,7 @@ const ContactSection = () => {
   })
 
   return (
-    <Row className="mt-5 mb-5">
+    <Row id="contact" className="mt-5 mb-5">
       <Col
         className="lets-chat d-flex align-items-center justify-content-center"
         xs={12}
