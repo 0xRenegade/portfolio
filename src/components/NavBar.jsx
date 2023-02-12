@@ -1,10 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { useParams } from 'react-router-dom'
 
 const NavBar = () => {
-  const [yOffset, setYOffset] = useState(window.pageYOffset)
+  const params = useParams()
+
+  console.log('params', params)
 
   const handleScroll = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -12,6 +15,8 @@ const NavBar = () => {
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }
+
+  // useEffect(() => {}, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)

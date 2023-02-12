@@ -15,7 +15,8 @@ label {
   text-align: center;
 }
 
-.btn-primary {
+.btn-primary,
+.nav-link {
   background-color: #282942;
   color: #d863bb;
   border: 1px solid #cccccc;
@@ -23,10 +24,14 @@ label {
 
 .btn-primary:hover,
 .btn-primary:active,
-.btn-primary:focus {
+.btn-primary:focus,
+.nav-link:hover,
+.nav-link:active,
+.nav-link:focus {
   background-color: #d863bb !important;
   color: #282942 !important;
   border: 1px solid #cccccc !important;
+  border-radius: 20px;
 }
 
 .card {
@@ -35,6 +40,12 @@ label {
 
 .card-body {
   background-color: #282942;
+}
+
+.nav-link {
+    font-weight: bold;
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
 .profile-pic {
