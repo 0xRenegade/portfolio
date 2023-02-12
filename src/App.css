@@ -21,7 +21,8 @@ label {
 }
 
 .btn-primary:hover,
-.btn-primary:active {
+.btn-primary:active,
+.btn-primary:focus {
   background-color: #d863bb !important;
   color: #282942 !important;
   border: 1px solid #cccccc !important;
