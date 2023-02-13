@@ -24,6 +24,7 @@ label {
   background-color: #282942 !important;
   color: #d863bb !important;
   border-radius: 20px !important;
+  border: none !important;
 }
 
 .btn-primary,
@@ -31,6 +32,7 @@ label {
   background-color: #d863bb !important;
   color: #282942 !important;
   border-radius: 20px;
+  border: none !important;
 }
 
 .card {
