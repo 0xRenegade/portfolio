@@ -1,5 +1,5 @@
 import React from 'react'
-import { HomePage, ProjectPage } from '../pages'
+import { HomePage, ProjectPage, WebsitesPage } from '../pages'
 import { Route, Routes } from 'react-router-dom'
 
 const Router = () => {
@@ -7,6 +7,7 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<HomePage />}></Route>
       <Route path="/projects/:slug" element={<ProjectPage />}></Route>
+      <Route path="/websites/" element={<WebsitesPage />}></Route>
     </Routes>
   )
 }
