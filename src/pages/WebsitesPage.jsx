@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const WebsitesPage = () => {
   return (
-    <Row id="websites" className="mt-5 mb-5">
+    <Row id="websites" className="mt-5 pb-5">
       {websites &&
         websites.map((website, i) => {
           return (

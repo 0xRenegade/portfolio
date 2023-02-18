@@ -2,13 +2,15 @@ import { Router } from './router'
 import { Layout } from './components'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
+import Styles from './Styles'
 
 const App = () => {
   return (
-    <Layout>
-      <Router />
-    </Layout>
+    <Styles>
+      <Layout>
+        <Router />
+      </Layout>
+    </Styles>
   )
 }
 
