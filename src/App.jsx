@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useState } from 'react'
 import { Router } from './router'
 import { Layout } from './components'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -7,7 +7,8 @@ import styled from 'styled-components'
 import ThemeContext from './context/ThemeContext'
 
 const App = () => {
-  const { theme } = useContext(ThemeContext)
+  const [theme, setTheme] = useState('terminal')
+  const value = { theme, setTheme }
 
   const Styles = styled.div`
     #app {
@@ -100,11 +101,13 @@ const App = () => {
     }
   `
   return (
-    <Styles>
-      <Layout>
-        <Router />
-      </Layout>
-    </Styles>
+    <ThemeContext.Provider value={value}>
+      <Styles>
+        <Layout>
+          <Router />
+        </Layout>
+      </Styles>
+    </ThemeContext.Provider>
   )
 }
 

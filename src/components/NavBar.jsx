@@ -1,13 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { useParams } from 'react-router-dom'
+import ThemeContext from '../context/ThemeContext'
 
 const NavBar = () => {
   const params = useParams()
-
-  console.log('params', params)
+  const { theme, setTheme } = useContext(ThemeContext)
 
   const handleScroll = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -16,7 +16,9 @@ const NavBar = () => {
     }
   }
 
-  // useEffect(() => {}, [])
+  const handleTheme = (theme) => {
+    setTheme(theme)
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -42,6 +44,24 @@ const NavBar = () => {
               </Nav.Link>
               <Nav.Link onClick={() => handleScroll('contact')} href="#">
                 Contact
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Navbar expand="lg">
+        <Container>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-center"
+          >
+            <Nav>
+              <Nav.Link onClick={() => handleTheme('dracula')} href="#">
+                Dracula
+              </Nav.Link>
+              <Nav.Link onClick={() => handleTheme('terminal')} href="#">
+                Terminal
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
