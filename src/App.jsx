@@ -59,7 +59,12 @@ const App = () => {
 
     .card {
       border: 1px solid ${theme === 'dracula' ? '#282943' : '#000'};
+      ${theme === 'terminal' ? 'border-radius: 0px !important;' : ''}
     }
+
+    ${theme === 'terminal'
+      ? '.card-img-top { border-radius: 0px !important; }'
+      : ''}
 
     .card-body {
       background-color: ${theme === 'dracula' ? '#282942' : '#008705'};
@@ -90,7 +95,7 @@ const App = () => {
     form {
       padding: 16px;
       border: 1px solid rgba(0, 0, 0, 0.175);
-      border-radius: 0.375rem;
+      border-radius: ${theme === 'dracula' ? '0.375rem' : '0px !important'};
       background-color: ${theme === 'dracula' ? '#282942' : '#008705'};
     }
 
